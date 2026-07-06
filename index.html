@@ -274,6 +274,13 @@
     }
     .fulfil-badge strong { color: var(--text); }
     .fulfil-ico { font-size: 1.2rem; flex-shrink: 0; }
+    .referred-badge {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      margin-top: 10px; padding: 11px 16px; border-radius: 12px;
+      background: rgba(46,230,166,.08); border: 1px solid rgba(46,230,166,.3);
+      font-size: .86rem; color: var(--green); line-height: 1.35;
+    }
+    .referred-badge strong { color: var(--text); text-transform: capitalize; }
 
     /* ---------- Trust logos ---------- */
     .trust { text-align: center; }
@@ -827,6 +834,10 @@
           <span class="fulfil-ico">📦</span>
           <span>Your order is securely processed &amp; tracked by <strong>Fulfilera</strong></span>
         </div>
+        <div class="referred-badge" id="referred-badge" hidden>
+          <span class="fulfil-ico">🤝</span>
+          <span>Referred by <strong id="referred-name">—</strong></span>
+        </div>
         <p class="price-sub" style="margin-top:10px;">🔒 Secure checkout · Instant access after payment</p>
       </div>
     </div>
@@ -978,7 +989,22 @@
       setInterval(show, 16000);
     })();
 
+    // ---- Referral display badge (cosmetic only) ----
+    // NOTE: Fulfilera attributes the sale via its OWN first-party cookie on
+    // app.fulfilera.com, set when the buyer clicks an affiliate's tracked link.
+    // This page cannot read that cookie (cross-domain), so the badge below is
+    // purely for display — it shows the affiliate name ONLY if Fulfilera forwards
+    // ?ref= onto this page's URL. It does NOT affect commission attribution.
+    (function () {
+      var REF_PARAM = 'ref';
+      var ref = new URLSearchParams(location.search).get(REF_PARAM);
+      if (!ref) return;
+      ref = ref.trim().slice(0, 60);
 
+      var badge = document.getElementById('referred-badge');
+      var nameEl = document.getElementById('referred-name');
+      if (badge && nameEl) { nameEl.textContent = ref; badge.hidden = false; }
+    })();
   </script>
 </body>
 </html>
