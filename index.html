@@ -270,6 +270,48 @@
     .trust .logos { display: flex; gap: 30px; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 26px; opacity: .85; }
     .trust .logos span { font-weight: 800; font-size: 1.15rem; color: var(--muted); }
 
+    /* ---------- Story section ---------- */
+    .story { background: var(--bg); position: relative; overflow: hidden; }
+    .story::before {
+      content: '"'; position: absolute; top: -40px; left: 8%;
+      font-size: 320px; font-weight: 900;
+      color: rgba(124,92,255,.04);
+      line-height: 1; font-family: Georgia, serif; pointer-events: none;
+    }
+    .story-inner { max-width: 720px; margin: 0 auto; position: relative; }
+    .story-inner::before {
+      content: ''; position: absolute; top: 80px; bottom: 0; left: -40px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--brand) 0%, rgba(124,92,255,.08) 100%);
+    }
+    .story-body { position: relative; z-index: 1; }
+    .story-body p {
+      font-size: clamp(1rem, 1.8vw, 1.22rem); line-height: 1.85;
+      color: var(--muted); margin-bottom: 24px;
+    }
+    .story-body p:last-child { margin-bottom: 0; }
+    .story-body strong { color: #fff; font-weight: 700; }
+    .story-body em { font-style: normal; color: var(--brand-2); font-weight: 700; }
+    .story-pull {
+      border-left: 4px solid var(--brand);
+      padding: 22px 28px; margin: 36px 0;
+      background: linear-gradient(135deg, rgba(124,92,255,.07) 0%, rgba(124,92,255,.02) 100%);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .story-pull p {
+      font-size: clamp(1.1rem, 2vw, 1.4rem) !important;
+      font-weight: 700; color: #fff !important;
+      line-height: 1.5 !important; margin: 0 !important;
+    }
+    .story-divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(to right, rgba(124,92,255,.4), transparent);
+      margin: 44px 0;
+    }
+    @media (max-width: 640px) {
+      .story-inner::before { left: -16px; }
+    }
+
     /* ---------- Value stack ---------- */
     .stack { max-width: 720px; margin: 0 auto; background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
     .stack-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 24px; border-top: 1px solid var(--border); }
@@ -437,6 +479,50 @@
         <span class="eyebrow">What is Vibe Coding?</span>
         <h2>You bring the <span class="grad-text">vision</span>. The AI writes the code.</h2>
         <p class="lead">"Vibe coding" means building software by <strong>describing what you want in plain language</strong> and letting AI do the heavy lifting. Instead of learning thousands of lines of syntax, you learn how to think clearly, prompt effectively, and steer powerful AI tools toward exactly the app you're imagining. It's the fastest path from "I have an idea" to "it's live on the internet" — and it's the most valuable skill you can learn right now.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="story" id="story">
+    <div class="wrap">
+      <div class="story-inner">
+        <span class="eyebrow">How this course was born</span>
+        <div class="story-body">
+          <p>A while back, I had a business idea that I <strong>knew</strong> could work. I had validated the concept, talked to potential customers, even sketched out the features on paper. Everything was ready — except the most important part.</p>
+
+          <p>I couldn't build it. <strong>I didn't know how to code.</strong></p>
+
+          <p>I tried the "obvious" routes first. I asked a developer friend for a quote — <strong>₦800,000</strong>. I tried a freelancer on Upwork — "₦500k minimum, 6-week timeline." I started a YouTube tutorial on HTML — got confused by hour two and closed the tab. I even signed up for a coding bootcamp, paid the deposit, and dropped out after week three because nothing I was building looked like anything a real person would use.</p>
+
+          <div class="story-pull">
+            <p>"I was watching people launch businesses every day on the internet — people who weren't smarter than me — and I couldn't even get a landing page online."</p>
+          </div>
+
+          <p>Then one evening, completely frustrated, I opened a tool I'd heard about — an AI code editor. I typed a single sentence: <em>"Build me a landing page for a sneaker store with a cart and checkout."</em></p>
+
+          <p>And it… built it. Right in front of me. A real, working page with product images, an add-to-cart button, and a payment form. In about <strong>12 minutes</strong>.</p>
+
+          <p>I stared at my screen. Then I started tweaking it. "Make the header darker." Done. "Add a WhatsApp button." Done. "Connect Paystack so I can accept real payments." Done.</p>
+
+          <p>By midnight, I had a fully functional store — live on the internet, accepting payments, looking better than what the developer had quoted me ₦800k for.</p>
+
+          <div class="story-divider"></div>
+
+          <p>I was stunned. Not because the AI was clever — but because <em>nobody had told me this was possible</em>. I'd spent months feeling stuck, when the tools to build anything I wanted were already free and available. I just didn't know how to use them.</p>
+
+          <p>The technology was never the problem. <strong>The approach was the problem.</strong></p>
+
+          <p>I had been trying to learn coding the hard way — memorizing syntax, watching 12-hour tutorials, fighting with error messages I didn't understand. The moment I switched to <em>guiding AI with clear instructions</em>, everything changed.</p>
+
+          <p>Over the next few months, I built 15+ projects — client websites, booking apps, dashboards, e-commerce stores — all using AI tools. I documented every workflow, every prompt, every shortcut into a system that any complete beginner could follow.</p>
+
+          <div class="story-pull">
+            <p>"That system is this course. And the only difference between where you are right now and where I was before that first prompt — is that you haven't started yet."</p>
+          </div>
+
+          <p style="color:var(--brand-2); font-weight:700; font-size:clamp(.95rem,1.6vw,1.12rem);">The tools are already free. The skill is learnable in days, not years. Let me show you exactly how.</p>
+        </div>
       </div>
     </div>
   </section>
