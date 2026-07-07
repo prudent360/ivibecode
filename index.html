@@ -410,7 +410,7 @@
   <!-- URGENCY BANNER -->
   <div class="topbar">
     <span>🔥 Launch Price — ₦35,000 One-Time (was ₦150,000)</span>
-    <span>Offer ends in <span class="cd" id="banner-cd">23:59:59</span></span>
+    <span>Offer ends in <span class="cd" id="banner-cd">59:59</span></span>
   </div>
 
   <!-- HERO -->
@@ -814,7 +814,6 @@
         <div class="price-sub">One-time payment · No subscription · Lifetime access</div>
 
         <div class="cd-box" id="price-cd">
-          <div class="cd-unit"><div class="cd-num" id="cd-h">23</div><div class="cd-lbl">Hours</div></div>
           <div class="cd-unit"><div class="cd-num" id="cd-m">59</div><div class="cd-lbl">Mins</div></div>
           <div class="cd-unit"><div class="cd-num" id="cd-s">59</div><div class="cd-lbl">Secs</div></div>
         </div>
@@ -926,25 +925,24 @@
   </div>
 
   <script>
-    // ---- Countdown (resets to 24h, persisted per browser) ----
+    // ---- Evergreen countdown: fresh 1 hour per visitor, resets on expiry ----
     (function () {
       var KEY = 'vcm_deadline';
+      var DURATION = 60 * 60 * 1000; // 1 hour
+      function fresh() { var d = Date.now() + DURATION; localStorage.setItem(KEY, d); return d; }
       var deadline = localStorage.getItem(KEY);
-      if (!deadline || isNaN(+deadline) || +deadline < Date.now()) {
-        deadline = Date.now() + 24 * 60 * 60 * 1000;
-        localStorage.setItem(KEY, deadline);
-      }
+      // reset if missing, invalid, expired, or left over from a longer old timer
+      if (!deadline || isNaN(+deadline) || +deadline < Date.now() || +deadline > Date.now() + DURATION) deadline = fresh();
       deadline = +deadline;
       var bannerCd = document.getElementById('banner-cd');
-      var h = document.getElementById('cd-h'), m = document.getElementById('cd-m'), s = document.getElementById('cd-s');
+      var m = document.getElementById('cd-m'), s = document.getElementById('cd-s');
       function pad(n){ return (n < 10 ? '0' : '') + n; }
       function tick() {
-        var diff = Math.max(0, deadline - Date.now());
-        var hrs = Math.floor(diff / 3.6e6);
-        var min = Math.floor(diff % 3.6e6 / 6e4);
+        var diff = deadline - Date.now();
+        if (diff <= 0) { deadline = fresh(); diff = deadline - Date.now(); } // evergreen restart
+        var min = Math.floor(diff / 6e4);
         var sec = Math.floor(diff % 6e4 / 1e3);
-        if (bannerCd) bannerCd.textContent = pad(hrs) + ':' + pad(min) + ':' + pad(sec);
-        if (h) h.textContent = pad(hrs);
+        if (bannerCd) bannerCd.textContent = pad(min) + ':' + pad(sec);
         if (m) m.textContent = pad(min);
         if (s) s.textContent = pad(sec);
       }
